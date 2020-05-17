@@ -1,0 +1,25 @@
+/* body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family:monospace
+}
+
+.header-reg{
+    height: 80px;
+    background-color: #40689c;
+}
+
+content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.block-header{
+    margin-bottom: 3px;
+    border-bottom: 1px solid #aaa;
+}
+
+.block-header h1{
+    text-align: center;
+} */

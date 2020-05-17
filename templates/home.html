@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{%load staticfiles%}
+{% block content %}
+
+
+  <div class="container">
+<div class="py-5 text-center">
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-10 order-md-1">
+    <h4 class="mb-3">Информация</h4>
+    <form class="needs-validation" novalidate>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="firstName">Имя</label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lastName">Фамилия</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lastName">Отчество</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Паспорт</h4>
+      <div class="row">
+          <div class="col-md-4 mb-3">
+
+            <label for="firstName">Серия</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Номер</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+      <hr class="mb-4">
+      <h4>Пол</h4>
+      <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+            <label class="custom-control-label" for="credit">Мужской</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="debit">Женский</label>
+          </div>
+        </div>
+      <hr class="mb-4">
+      <h4>Контакты</h4>
+      <div class="row">
+          <div class="col-md-4 mb-3">
+
+            <label for="firstName">Эл Почта</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Тел-Номер</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+      <hr class="mb-4">
+      <h4>Комплектующий орган</h4>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <select class="custom-select d-block w-100" id="country" required>
+            <option value="">Choose...</option>
+            <option>Московский</option>
+            <option>Областной</option>
+            <option>Региональный</option>
+          </select>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Специальность</h4>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="lastName">Специальность</label>
+          <select class="custom-select d-block w-100" id="country" required>
+            <option value="">Choose...</option>
+            <option>Криминалисты</option>
+            <option>ФПСОИБ</option>
+            <option>ФПООП</option>
+          </select>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label for="lastName">Факультет</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Результаты ЕГЭ</h4>
+      <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="firstName">Русский язык</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="lastName">Математика</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          </div>
+          <div class="col-md-3 mb-3">
+              <label for="firstName">Обществознание</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            </div>
+          <div class="col-md-3 mb-3">
+              <label for="firstName">Биология</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <h4>Достижения</h4>
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="lastName">Индивидуальные достижения</label>
+            <select class="custom-select d-block w-100" id="country" required>
+              <option value="">Choose...</option>
+              <option>--</option>
+              <option>--</option>
+              <option>--</option>
+            </select>
+          </div>
+          <div class="col-md-5 mb-3">
+              <label for="lastName">Особое право на поступление</label>
+              <select class="custom-select d-block w-100" id="country" required>
+                <option value="">Choose...</option>
+                <option>--</option>
+                <option>--</option>
+                <option>--</option>
+              </select>
+            </div>
+
+        </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Продолжить</button>
+    </form>
+  </div>
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+
+</footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+      <script src="form-validation.js"></script>
+
+      {% endblock %}
