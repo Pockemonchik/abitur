@@ -15,7 +15,7 @@
 
 </div>
 
-<div class="row">
+<div class="row biggest">
 
   <div class="col-md-10 order-md-1">
     <h4 class="mb-3">Информация</h4>
@@ -129,18 +129,84 @@
         <hr class="mb-4">
         <h4>Дополнительно</h4>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <!-- <div class="col-md-6 mb-3">
               <label for="lastName">Личные достижения</label>
-            {{form.dostizh}}
+              {{form.dostizh}}
           </div>
           <div class="col-md-6 mb-3">
               <label for="lastName">Особое право на поступление</label>
               {{form.osobpravo}}
+            </div> -->
+            <div class="dropdown col-md-5 mb-3">
+              <button class="btn btn-secondary dropdown-toggle button-pravo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Личные достижения
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                
+              </div>
             </div>
-
+            <div class="dropdown col-md-5 mb-3">
+              <button class="btn btn-secondary dropdown-toggle button-pravo" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Особое право на поступление
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfhsdfsdafsdfsdf
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    fdghfghfghfhfghfghgfh
+                  </label>
+                </div>
+                
+              </div>
+            </div>
         </div>
         <hr class="mb-4">
-        <h4>Подкрепить файл</h4>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить информацию</button>
+    </form>
+    <hr class="mb-4">
+    <h4>Подкрепить файл</h4>
         <div class="row">
           <div class="col-md-6 mb-3">
               <label for="lastName"></label>
@@ -150,12 +216,7 @@
               <label for="lastName"></label>
               {{form.osobpravoFile}}
             </div>
-
         </div>
-
-      <hr class="mb-4">
-      <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить информацию</button>
-    </form>
   </div>
   </form>
 </div>

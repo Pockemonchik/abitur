@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static "/css/login.css" %}" />
+    
 </head>
 <body class="align">
   <div class="header">
@@ -14,7 +15,7 @@
       <div class="row">
         <div class="flex-item">МОСКОВСКИЙ УНИВЕРСИТЕТ МВД РОСИИИ</div>
         <div class="flex-item">ИМЕНИ В.Я. КИКОТЯ</div>
-        <div class="flex-item">Электронный индивидуальный план</div>
+        <div class="flex-item">Электронная регистрация кандидатов на поступление</div>
       </div>
     </div>
     </div>
@@ -25,11 +26,30 @@
 
         <header class="login__header">
           <h3 class="login__title">Авторизация<!-- <img src="{% static "admin1/images/1.png" %}""> --></h3>
+          <script>
+            function Choice(parameter) {
+              if (parameter == 'Login'){
+                document.getElementById('Login').style.display = "block"; 
+                document.getElementById('reg__body').style.display = "none";
+                document.getElementById('footer').style.display = "block";
+              }
+              if (parameter == 'Register'){
+                document.getElementById('footer').style.display = "none";
+                document.getElementById('Login').style.display = "none";
+                document.getElementById('reg__body').style.display = "block";
+              }
+               
+            }
+            </script>
+          <div class="w3-bar w3-black">
+            <button class="w3-bar-item w3-button" onclick="Choice('Login')">Login</button>
+            <button class="w3-bar-item w3-button" onclick="Choice('Register')">Register</button>
+          </div>
         </header>
 
 
 
-        <div class="login__body" >
+        <div class="login__body" id="Login" >
           {{ form }}
 
         	<!-- <div class="form__field">
@@ -41,8 +61,11 @@
         	</div> -->
 
         </div>
+        <div class="reg__body"  style="display:none" id="reg__body">
+          <p>ебал тя</p>
+        </div>
 
-        	<footer class="login__footer">
+        	<footer class="login__footer" id="footer">
 		        <input type="submit" value="Login" class="knoblogin">
 
 		        <!-- <p><span class="icon icon--info">?</span><a href="#">Forgot Password</a></p>

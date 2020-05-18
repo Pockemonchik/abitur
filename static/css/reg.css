@@ -23,3 +23,23 @@ content {
 .block-header h1{
     text-align: center;
 } */
+
+.biggest {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+}
+
+.dropdown-menu {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.form-check {
+    margin-bottom: 2px;
+}
+
+.button-pravo {
+    width: 350px;
+}
