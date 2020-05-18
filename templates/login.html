@@ -6,13 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static "/css/login.css" %}" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- <link rel="stylesheet" href="{% static "/css/form-login.css" %}" /> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     
 </head>
 <body class="align">
-  <div class="header">
+  <div class="headered">
     <div class="txt">
       <img src="{% static "admin1/images/logo.png" %}">
-      <div class="row">
+      <div class="rowery">
         <div class="flex-item">МОСКОВСКИЙ УНИВЕРСИТЕТ МВД РОСИИИ</div>
         <div class="flex-item">ИМЕНИ В.Я. КИКОТЯ</div>
         <div class="flex-item">Электронная регистрация кандидатов на поступление</div>
@@ -21,29 +24,81 @@
     </div>
 {% block content %}
   {% csrf_token %}
-      <form action="." method="post" class="form login">
+
+  <div class="content">
+    <!-- Nav pills -->
+    <ul class="nav nav-pills" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="pill" href="#login">Вход</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#regis">Регистрация</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div id="login" class="container tab-pane active">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Фамилия</label>
+            <input class="form-control" id="exampleFormControlInput1">
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Номер паспорта</label>
+            <input class="form-control" id="exampleInputPassword1">
+            
+          </div>
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+      </div>
+      <div id="regis" class="container tab-pane fade">
+        <form>
+          <div class="form-group">
+            <label for="InputName">Фамилия</label>
+            <input type="text" class="form-control" id="InputName">
+          </div>
+          <div class="form-group">
+            <label for="InputUsername">Номер паспорта</label>
+            <input type="text" class="form-control" id="InputUsername">
+          </div>
+          <div class="form-check checker">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+             <a href="#">Принять пользовательсякое соглашение</a> 
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+  </div>
+      <!-- <form action="." method="post" class="form login">
         {% csrf_token %}
 
         <header class="login__header">
-          <h3 class="login__title">Авторизация<!-- <img src="{% static "admin1/images/1.png" %}""> --></h3>
+          <h3 class="login__title">Авторизация</h3>
           <script>
             function Choice(parameter) {
               if (parameter == 'Login'){
                 document.getElementById('Login').style.display = "block"; 
                 document.getElementById('reg__body').style.display = "none";
                 document.getElementById('footer').style.display = "block";
+                document.getElementById('footer2').style.display = "none";
               }
               if (parameter == 'Register'){
                 document.getElementById('footer').style.display = "none";
                 document.getElementById('Login').style.display = "none";
                 document.getElementById('reg__body').style.display = "block";
+                document.getElementById('footer2').style.display = "block";
               }
                
             }
             </script>
           <div class="w3-bar w3-black">
-            <button class="w3-bar-item w3-button" onclick="Choice('Login')">Login</button>
-            <button class="w3-bar-item w3-button" onclick="Choice('Register')">Register</button>
+            <button class="nav-link active" onclick="Choice('Login')">Login</button>
+            <button class="nav-link" onclick="Choice('Register')">Register</button>
           </div>
         </header>
 
@@ -52,26 +107,25 @@
         <div class="login__body" id="Login" >
           {{ form }}
 
-        	<!-- <div class="form__field">
-          		<input type="text" placeholder="Login" required>
-        	</div>
-
-        	<div class="form__field">
-          		<input type="password" placeholder="Password" required>
-        	</div> -->
+        	
 
         </div>
-        <div class="reg__body"  style="display:none" id="reg__body">
-          <p>ебал тя</p>
+        <div class="login__body"  style="display:none" id="reg__body">
+          {{ form }}
         </div>
 
         	<footer class="login__footer" id="footer">
 		        <input type="submit" value="Login" class="knoblogin">
 
-		        <!-- <p><span class="icon icon--info">?</span><a href="#">Forgot Password</a></p>
-		        <p><span class="icon icon--info">?</span><a href="#">Register</a></p> -->
+		        
+          </footer>
+          <footer class="login__footer" id="footer2" style="display: none;">
+		        <input type="submit" value="Login" class="knoblogin">
+
+		        
       		</footer>
-    </form>
+    </form> -->
 {% endblock %}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
