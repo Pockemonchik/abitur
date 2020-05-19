@@ -1,9 +1,19 @@
 from django import forms
-from home.models import Profile
+from home.models import Profile,OsobDocument,DostizhDocument
 from django.forms import TextInput,Textarea,Select,RadioSelect
 
 class ProfileForm(forms.ModelForm):
-     class Meta:
+    DOST = (('a','a'),
+               ('b','b'),
+               ('c','c'),
+               ('d','d'),)
+    dost = forms.MultipleChoiceField(choices=DOST, widget=forms.CheckboxSelectMultiple())
+    OSOB = (('a','a'),
+               ('b','b'),
+               ('c','c'),
+               ('d','d'),)
+    osob = forms.MultipleChoiceField(choices=OSOB, widget=forms.CheckboxSelectMultiple())
+    class Meta:
         model=Profile
         exclude = ['user','role','zayavl']
         widgets = {
@@ -26,4 +36,19 @@ class ProfileForm(forms.ModelForm):
             'organ':Select(attrs={'class':'custom-select d-block w-100'}),
             'osobpravo':Select(attrs={'class':'custom-select d-block w-100'}),
 
+        }
+    def save(self, commit=True):
+        # do something with self.cleaned_data['temp_id']
+        return super(ProfileForm, self).save(commit=commit)
+class OsobDocumentForm(forms.ModelForm):
+    class Meta:
+        model=OsobDocument
+        fields = ['name','doc']
+        widgets = {
+        }
+class DostizhDocumentForm(forms.ModelForm):
+    class Meta:
+        model=DostizhDocument
+        fields = ['name','doc']
+        widgets = {
         }

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{%load staticfiles%}
+{%load static%}
 {% block content %}
 
 
@@ -7,7 +7,7 @@
 
 
 
-<form action="{%url 'saveInfo'%}" method="post" enctype="multipart/form-data" class="zagruzka">
+<form action="{%url 'saveInfo'%}" method="post" class="zagruzka">
       {% csrf_token %}
   <div class="container">
 <div class="py-5 text-center">
@@ -142,31 +142,14 @@
                 Личные достижения
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <div class="form-check">
+                  {{form.dostizh}}
+                <!-- <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                   <label class="form-check-label" for="defaultCheck1">
                     fdghfghfghfhfghfghgfh
                   </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                
+                </div> -->
+
               </div>
             </div>
             <div class="dropdown col-md-5 mb-3">
@@ -174,34 +157,13 @@
                 Особое право на поступление
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfhsdfsdafsdfsdf
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    fdghfghfghfhfghfghgfh
-                  </label>
-                </div>
-                
+                {{form.osobpravo}}
+
               </div>
             </div>
         </div>
+
+
         <hr class="mb-4">
       <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить информацию</button>
     </form>
@@ -210,11 +172,11 @@
         <div class="row">
           <div class="col-md-6 mb-3">
               <label for="lastName"></label>
-            {{form.dostiszhFile}}
+            {{fileForm.dostizhFile}}
           </div>
           <div class="col-md-6 mb-3">
               <label for="lastName"></label>
-              {{form.osobpravoFile}}
+              {{fileForm.osobpravoFile}}
             </div>
         </div>
   </div>

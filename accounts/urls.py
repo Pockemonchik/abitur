@@ -9,6 +9,7 @@ from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     url('login/',views.log,name="log"),
+    url('register/',views.reg,name="reg"),
     url('logout/',views.logout_view,name="logout")
 ]
 if settings.DEBUG:

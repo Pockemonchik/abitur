@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%load staticfiles%}
+{%load static%}
 <html>
 
 <head>
@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- <link rel="stylesheet" href="{% static "/css/form-login.css" %}" /> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+
 </head>
 <body class="align">
   <div class="headered">
@@ -39,34 +39,34 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div id="login" class="container tab-pane active">
-        <form>
+        <form action="." method="post">
+              {% csrf_token %}
           <div class="form-group">
             <label for="exampleFormControlInput1">Фамилия</label>
-            <input class="form-control" id="exampleFormControlInput1">
-            
+          {{form.username}}
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Номер паспорта</label>
-            <input class="form-control" id="exampleInputPassword1">
-            
+            {{form.password}}
           </div>
           <button type="submit" class="btn btn-primary">Войти</button>
         </form>
       </div>
       <div id="regis" class="container tab-pane fade">
-        <form>
+        <form action="{%url 'reg'%}" method="post">
+            {% csrf_token %}
           <div class="form-group">
             <label for="InputName">Фамилия</label>
-            <input type="text" class="form-control" id="InputName">
+            {{regform.username}}
           </div>
           <div class="form-group">
             <label for="InputUsername">Номер паспорта</label>
-            <input type="text" class="form-control" id="InputUsername">
+            {{regform.password}}
           </div>
           <div class="form-check checker">
             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
-             <a href="#">Принять пользовательсякое соглашение</a> 
+             <a href="#">Принять пользовательсякое соглашение</a>
             </label>
           </div>
           <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
@@ -82,7 +82,7 @@
           <script>
             function Choice(parameter) {
               if (parameter == 'Login'){
-                document.getElementById('Login').style.display = "block"; 
+                document.getElementById('Login').style.display = "block";
                 document.getElementById('reg__body').style.display = "none";
                 document.getElementById('footer').style.display = "block";
                 document.getElementById('footer2').style.display = "none";
@@ -93,7 +93,7 @@
                 document.getElementById('reg__body').style.display = "block";
                 document.getElementById('footer2').style.display = "block";
               }
-               
+
             }
             </script>
           <div class="w3-bar w3-black">
@@ -107,7 +107,7 @@
         <div class="login__body" id="Login" >
           {{ form }}
 
-        	
+
 
         </div>
         <div class="login__body"  style="display:none" id="reg__body">
@@ -117,12 +117,12 @@
         	<footer class="login__footer" id="footer">
 		        <input type="submit" value="Login" class="knoblogin">
 
-		        
+
           </footer>
           <footer class="login__footer" id="footer2" style="display: none;">
 		        <input type="submit" value="Login" class="knoblogin">
 
-		        
+
       		</footer>
     </form> -->
 {% endblock %}
