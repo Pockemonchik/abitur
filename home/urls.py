@@ -10,6 +10,8 @@ from django.contrib.auth.views import LoginView
 urlpatterns = [
     url(r'^$', views.index,name='index'),
     url(r'saveInfo', views.saveInfo,name='saveInfo'),
+    url(r'saveDocOsob', views.saveDocOsob,name='saveDocOsob'),
+    url(r'saveDocDost', views.saveDocDost,name='saveDocDost'),
     ]
 
 if settings.DEBUG:

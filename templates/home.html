@@ -7,8 +7,8 @@
 
 
 
-<form action="{%url 'saveInfo'%}" method="post" class="zagruzka">
-      {% csrf_token %}
+
+
   <div class="container">
 <div class="py-5 text-center">
 
@@ -19,7 +19,8 @@
 
   <div class="col-md-10 order-md-1">
     <h4 class="mb-3">Информация</h4>
-    <form class="needs-validation" novalidate>
+    <form action="{%url 'saveInfo'%}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
       <div class="row">
         <div class="col-md-4 mb-3">
           <label for="lastName">Фамилия</label>
@@ -142,7 +143,7 @@
                 Личные достижения
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  {{form.dostizh}}
+                  {{form.dost}}
                 <!-- <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                   <label class="form-check-label" for="defaultCheck1">
@@ -157,7 +158,7 @@
                 Особое право на поступление
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                {{form.osobpravo}}
+                {{form.osob}}
 
               </div>
             </div>
@@ -169,18 +170,41 @@
     </form>
     <hr class="mb-4">
     <h4>Подкрепить файл</h4>
+
         <div class="row">
+          <form action="{%url 'saveDocDost'%}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
           <div class="col-md-6 mb-3">
-              <label for="lastName"></label>
-            {{fileForm.dostizhFile}}
+            {{ formset0.management_form }}
+              {%for form in formset0%}
+                  <tr>
+                    {% for field in form %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                  </tr>
+              {%endfor%}
           </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Прикрепить</button>
+          </form>
+          <form action="{%url 'saveDocOsob'%}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
           <div class="col-md-6 mb-3">
-              <label for="lastName"></label>
-              {{fileForm.osobpravoFile}}
+            {{ formset1.management_form }}
+            {%for form in formset1%}
+                <tr>
+                  {% for field in form %}
+
+                  <td>{{ field }}</td>
+                  {% endfor %}
+                </tr>
+            {%endfor%}
             </div>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Прикрепить</button>
+            </form>
         </div>
   </div>
-  </form>
+    
 </div>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">

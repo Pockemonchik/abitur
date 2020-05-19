@@ -7,12 +7,12 @@ class ProfileForm(forms.ModelForm):
                ('b','b'),
                ('c','c'),
                ('d','d'),)
-    dost = forms.MultipleChoiceField(choices=DOST, widget=forms.CheckboxSelectMultiple())
+    dost = forms.MultipleChoiceField(required=False,choices=DOST, widget=forms.CheckboxSelectMultiple())
     OSOB = (('a','a'),
                ('b','b'),
                ('c','c'),
                ('d','d'),)
-    osob = forms.MultipleChoiceField(choices=OSOB, widget=forms.CheckboxSelectMultiple())
+    osob = forms.MultipleChoiceField(required=False,choices=OSOB, widget=forms.CheckboxSelectMultiple())
     class Meta:
         model=Profile
         exclude = ['user','role','zayavl']
@@ -43,12 +43,12 @@ class ProfileForm(forms.ModelForm):
 class OsobDocumentForm(forms.ModelForm):
     class Meta:
         model=OsobDocument
-        fields = ['name','doc']
+        fields = ['name','type','doc',]
         widgets = {
         }
 class DostizhDocumentForm(forms.ModelForm):
     class Meta:
         model=DostizhDocument
-        fields = ['name','doc']
+        fields = ['name','type','doc']
         widgets = {
         }

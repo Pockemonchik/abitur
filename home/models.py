@@ -65,14 +65,16 @@ class Profile(models.Model):
 
 class OsobDocument(models.Model):
     profile=models.ForeignKey(Profile, on_delete=models.CASCADE)
-    name=models.CharField(max_length=50,blank=True)
-    doc = models.FileField(upload_to='files',default='')
+    type=models.CharField(max_length=500,blank=True)
+    name=models.CharField(max_length=500,blank=True)
+    doc = models.FileField(upload_to='files',default='',blank=True)
     def __str__(self):
             return self.profile.familiya+"особ право"
 
 class DostizhDocument(models.Model):
     profile=models.ForeignKey(Profile, on_delete=models.CASCADE)
-    name=models.CharField(max_length=50,blank=True)
-    doc = models.FileField(upload_to='files',default='')
+    type=models.CharField(max_length=500,blank=True)
+    name=models.CharField(max_length=500,blank=True)
+    doc = models.FileField(upload_to='files',default='',blank=True)
     def __str__(self):
             return self.profile.familiya+"достижения"
