@@ -2,17 +2,18 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm
+from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm,ZayavlForm
 from home.models import Profile,OsobDocument,DostizhDocument
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.http import HttpResponseRedirect, HttpResponse
+from home.zayava import writeTextToDoc
 
 def index(request):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
         form = ProfileForm(instance=profile)
-        form = ProfileForm(instance=profile)
+        zayavlForm = ZayavlForm(instance=profile)
         OsobFormSet = modelformset_factory(OsobDocument,form=OsobDocumentForm,extra=0)
         DostFormSet = modelformset_factory(DostizhDocument,form=DostizhDocumentForm,extra=0)
         formset1=OsobFormSet(queryset=OsobDocument.objects.filter(profile=profile))
@@ -21,6 +22,7 @@ def index(request):
         'form':form,
         'formset0': formset0,
         'formset1': formset1,
+        'zayavlForm':zayavlForm,
         })
     else:
         return redirect('log')
@@ -65,6 +67,39 @@ def saveDocDost(request):
 
     else:
         return redirect('log')
+
+ #выгружаем данные в документ
+#формируем список из всех данных и отправляем в скрипт
+def saveZayavl(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            form=ZayavlForm(request.POST or None,request.FILES or None)
+            print(request.POST,request.FILES)
+            if form.is_valid():
+                profile=get_object_or_404(Profile,user=request.user)
+                profile.zayavl=request.FILES['zayavl']
+                profile.save()
+            else:
+                print(form.errors)
+
+        return redirect('index')
+
+
+    else:
+        return redirect('log')
+
+
+def getZayavl(request):
+
+    if request.user.is_authenticated:
+            profile=get_object_or_404(Profile,user=request.user)
+            data=[]
+            doc=writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTable)
+            f =BytesIO()
+            doc.save(f)
+            response = HttpResponse(f.getvalue(), content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+            response['Content-Disposition'] = 'inline; filename=plan.docx'
+            return response
 
 
 

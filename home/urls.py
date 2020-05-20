@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'saveInfo', views.saveInfo,name='saveInfo'),
     url(r'saveDocOsob', views.saveDocOsob,name='saveDocOsob'),
     url(r'saveDocDost', views.saveDocDost,name='saveDocDost'),
+    url(r'saveZayavl', views.saveZayavl,name='saveZayavl'),
+    url(r'getZayavl', views.getZayavl,name='getZayavl'),
     ]
 
 if settings.DEBUG:

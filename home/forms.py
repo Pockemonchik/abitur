@@ -46,9 +46,16 @@ class OsobDocumentForm(forms.ModelForm):
         fields = ['name','type','doc',]
         widgets = {
         }
+
 class DostizhDocumentForm(forms.ModelForm):
     class Meta:
         model=DostizhDocument
         fields = ['name','type','doc']
+        widgets = {
+        }
+class ZayavlForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields = ['zayavl',]
         widgets = {
         }
