@@ -45,11 +45,13 @@ class Profile(models.Model):
     mat = models.IntegerField(default=0)
     obsh = models.IntegerField(default=0)
     biol = models.IntegerField(default=0)
-    zayavl = models.FileField(upload_to='files',default=None)
+    zayavl = models.FileField(upload_to='files',default=None,blank=True)
     #право доступа, 1- обычный пользователь 2-привелигированный
     role = models.IntegerField(default=1)
     #1-превая форма 2 доки 3 заявление
     dopinfo=models.BooleanField(default=False,blank=True)
+    dopusk=models.BooleanField(default=False,blank=True)
+    balli = models.IntegerField(default=0)
     def __str__(self):
         return self.user.username
     def getData(self):

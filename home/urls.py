@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'saveZayavl', views.saveZayavl,name='saveZayavl'),
     url(r'getZayavl', views.getZayavl,name='getZayavl'),
     url(r'adminpanel/(?P<slug>[\w-]+)', views.adminpanel,name='adminpanel'),
+    url(r'saveAdminTable/(?P<slug>[\w-]+)', views.saveAdminTable,name='saveAdminTable'),
 ]
 
 if settings.DEBUG:

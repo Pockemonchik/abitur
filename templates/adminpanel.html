@@ -92,43 +92,35 @@
       </div>
     </div>
   </div>
-
-
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <form  action="{%url 'saveAdminTable' slug %}" method="post">
+          {% csrf_token %}
     <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Фамилия</th>
-            <th scope="col">Анкета заполнена</th>
+            <th scope="col">допуск</th>
             <th scope="col">кол-во баллов</th>
             <th scope="col">пометка</th>
           </tr>
         </thead>
         <tbody>
+
+            {{ formset.management_form }}
+        {%for form in formset%}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+              <td></td>
+            {% for field in form %}
+            <td>{{ field }}</td>
+            {% endfor %}
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td></td>
-            <td></td>
-          </tr>
+      {%endfor%}
+
         </tbody>
       </table>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить изменения</button>
+  </form>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
   </footer>
 </div>
 {%endblock%}

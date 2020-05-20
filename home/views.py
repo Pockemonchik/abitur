@@ -41,10 +41,28 @@ def index(request):
 def adminpanel(request,slug):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
-
+        AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
+        formset=AdminFormSet(queryset=Profile.objects.filter(special=slug))
+        slug=slug
         return render(request, 'adminpanel.html',{
-
+            'formset': formset,
+            'slug':slug,
         })
+    else:
+        return redirect('log')
+def saveAdminTable(request,slug):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            profile=get_object_or_404(Profile,user=request.user)
+            AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
+            formset=AdminFormSet(request.POST,queryset=Profile.objects.filter(special=slug))
+            if formset.is_valid():
+                for form in formset:
+                    print('save')
+                    form.save()
+            else:
+                print(formset.errors)
+            return redirect('adminpanel',slug=slug)
     else:
         return redirect('log')
 
