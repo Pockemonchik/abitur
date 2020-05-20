@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'saveDocDost', views.saveDocDost,name='saveDocDost'),
     url(r'saveZayavl', views.saveZayavl,name='saveZayavl'),
     url(r'getZayavl', views.getZayavl,name='getZayavl'),
-    ]
+    url(r'adminpanel/(?P<slug>[\w-]+)', views.adminpanel,name='adminpanel'),
+]
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL,

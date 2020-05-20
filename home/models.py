@@ -45,17 +45,6 @@ class Profile(models.Model):
     mat = models.IntegerField(default=0)
     obsh = models.IntegerField(default=0)
     biol = models.IntegerField(default=0)
-    #individ dostizh
-    # DOST=(
-    #     ('нет', 'нет'),
-    #     ('otl', 'otl'),
-    #     ('sport,', 'sport'))
-    # OSOB=(
-    #     ('нет', 'нет'),
-    #     ('otl', 'otl'),
-    #     ('sport,', 'sport'))
-    # dostizh = models.CharField(max_length=100,choices=DOST,default="нет")
-    # osobpravo = models.CharField(max_length=100,choices=OSOB,default="нет")
     zayavl = models.FileField(upload_to='files',default='')
     #право доступа, 1- обычный пользователь 2-привелигированный
     role = models.IntegerField(default=1)

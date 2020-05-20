@@ -59,3 +59,9 @@ class ZayavlForm(forms.ModelForm):
         fields = ['zayavl',]
         widgets = {
         }
+class AdminForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields = ['familiya',]
+        widgets = {
+        }

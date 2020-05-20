@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm,ZayavlForm
+from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm,ZayavlForm,AdminForm
 from home.models import Profile,OsobDocument,DostizhDocument
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
@@ -26,6 +26,17 @@ def index(request):
         })
     else:
         return redirect('log')
+
+def adminpanel(request,slug):
+    if request.user.is_authenticated:
+        profile=get_object_or_404(Profile,user=request.user)
+
+        return render(request, 'adminpanel.html',{
+
+        })
+    else:
+        return redirect('log')
+
 
 def saveDocOsob(request):
     if request.user.is_authenticated:
