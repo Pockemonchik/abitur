@@ -8,10 +8,20 @@ from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.http import HttpResponseRedirect, HttpResponse
 from home.zayava import writeTextToDoc
+from io import StringIO,BytesIO
 
 def index(request):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
+        status=0
+        if profile.checkAnket():
+            status=1
+        if profile.dopinfo==True:
+            status=2
+        if profile.checkZayavl():
+            status=3
+        print(profile.checkAnket())
+        print(profile.checkZayavl())
         form = ProfileForm(instance=profile)
         zayavlForm = ZayavlForm(instance=profile)
         OsobFormSet = modelformset_factory(OsobDocument,form=OsobDocumentForm,extra=0)
@@ -23,6 +33,7 @@ def index(request):
         'formset0': formset0,
         'formset1': formset1,
         'zayavlForm':zayavlForm,
+        'status':status
         })
     else:
         return redirect('log')
@@ -104,7 +115,19 @@ def getZayavl(request):
 
     if request.user.is_authenticated:
             profile=get_object_or_404(Profile,user=request.user)
-            data=[]
+            listText=profile.getData()
+            alldost=DostizhDocument.objects.all()
+            firstRow=alldost.count()
+            listFirstTable=[]
+            for d in alldost:
+                listFirstTable.append(d.type)
+                listFirstTable.append(d.name)
+            allosob=OsobDocument.objects.all()
+            secondRow=allosob.count()
+            listSecondTable=[]
+            for d in allosob:
+                listSecondTable.append(d.type)
+                listSecondTable.append(d.name)
             doc=writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTable)
             f =BytesIO()
             doc.save(f)
@@ -124,18 +147,21 @@ def saveInfo(request):
                 if form.is_valid():
                     newprofile=form.save(commit=False)
                     newprofile.user=request.user
+                    if request.POST.getlist('dost') or request.POST.getlist('osob') != []:
+                        newprofile.dopinfo=True
                     newprofile.save()
-                    for d in request.POST.getlist('dost'):
-                        newdost=DostizhDocument()
-                        newdost.type=d
-                        newdost.profile=profile
-                        newdost.save()
-                    for d in request.POST.getlist('osob'):
-                        newdost=OsobDocument()
-                        newdost.type=d
-                        newdost.profile=profile
-                        newdost.save()
-                        #сохраняет ток послежний, переделать
+                    if request.POST.getlist('dost') or request.POST.getlist('osob') != []:
+                        for d in request.POST.getlist('dost'):
+                            newdost=DostizhDocument()
+                            newdost.type=d
+                            newdost.profile=profile
+                            newdost.save()
+
+                        for d in request.POST.getlist('osob'):
+                            newdost=OsobDocument()
+                            newdost.type=d
+                            newdost.profile=profile
+                            newdost.save()
 
                 else:
                     print(form.errors)

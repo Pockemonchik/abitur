@@ -18,6 +18,7 @@
 <div class="row biggest">
 
   <div class="col order-md-1">
+    <h1>{{status}}</h1>
     <h4 class="mb-3">Информация</h4>
     <form action="{%url 'saveInfo'%}" method="post" class="needs-validation" novalidate>
         {% csrf_token %}
@@ -171,7 +172,7 @@
     <hr class="mb-4">
     <h4 class="mb-3">Подкрепить файл</h4>
 
-          
+
           <div class="col mb-3">
             <form action="{%url 'saveDocDost'%}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
@@ -189,10 +190,10 @@
           <div class="col-md-6 mb-3 mt-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Прикрепить</button>
           </div>
-          
+
           </form>
           <hr class="mb-4">
-          
+
           <div class="col mb-3">
             <form action="{%url 'saveDocOsob'%}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
@@ -215,7 +216,7 @@
             <div class="row">
               <div class="col mb-3 mt-3">
                 <a href="{%url 'getZayavl'  %}"role="button"><button class="btn btn-secondary btn-lg btn-block mb-3" type="submit">Сформировать заявление</button></a>
-                </div> 
+                </div>
               <div class="col mb-3 mt-3">
                 <style type="text/css">
                   label {
@@ -229,7 +230,7 @@
                 <form action="{%url 'saveZayavl'%}" method="post" enctype="multipart/form-data" class="oformit">
                   {% csrf_token %}
                   {{zayavlForm}}
-              </div> 
+              </div>
             </div>
             <style>
               .knopk {
@@ -239,12 +240,12 @@
             <div class="col-md-6 mb-3 mt-4 knopk">
               <button class="btn btn-primary btn-lg btn-block" type="submit">Прикрепить</button>
             </div>
-                      
+
                       </form>
             </div>
         </div>
 
-        
+
 
       </div>
             </div>

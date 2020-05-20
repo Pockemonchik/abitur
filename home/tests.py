@@ -1,3 +1,10 @@
 from django.test import TestCase
 
-# Create your tests here.
+#
+# ),str(self.pol
+#
+#
+# ),str(self.facult
+#
+# ),str(self.zayavl
+# ),str(self.role

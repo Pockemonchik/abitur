@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 '''
 Установка дополнительных библиотек: pip install python-docx
 Версия библиотеки: 0.8.10
@@ -8,7 +9,7 @@ from docx import Document
 from docx.shared import Pt
 
 def writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTable):
-    document = Document('C:/Users/UzziMauzer/Desktop/AbitAccParser/shablon.docx')
+    document = Document('/home/andrey/Desktop/abitur/home/shablon.docx')
 
     needStrings = [3,4,5,7,10]
     count = 1
@@ -26,19 +27,19 @@ def writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTabl
                 font.size = Pt(12)
                 font.name = 'Times New Roman'
         if count == 5:
-            paragraphs.text = 'Прошу зарегистрировать меня в качестве кандидата на поступление в Московский университет МВД России имени В.Я. Кикотя в 2020 году на специальность (специализацию): %s' % (listText[6])
+            paragraphs.text = 'Прошу зарегистрировать меня в качестве кандидата на поступление в Московский университет МВД России имени В.Я. Кикотя в 2020 году на специальность (специализацию): %s, факультет: %s' % (listText[6], listText[7])
             for run in paragraphs.runs:
                 font = run.font
                 font.size = Pt(12)
                 font.name = 'Times New Roman'
         if count == 7:
-            paragraphs.text = 'Результаты ЕГЭ:                     Русский язык –    %s    Обществознание – %s                       Математика –     %s      Биология – %s' % (listText[7],listText[8],listText[9],listText[10])
+            paragraphs.text = 'Результаты ЕГЭ:                     Русский язык –    %s    Обществознание – %s                       Математика –     %s      Биология – %s' % (listText[8],listText[9],listText[10],listText[11])
             for run in paragraphs.runs:
                 font = run.font
                 font.size = Pt(12)
                 font.name = 'Times New Roman'
         if count == 10:
-            paragraphs.text = 'Мой контактный телефон %s, E-mail: %s' % (listText[11], listText[12])
+            paragraphs.text = 'Мой контактный телефон %s, E-mail: %s' % (listText[12], listText[13])
             for run in paragraphs.runs:
                 font = run.font
                 font.size = Pt(12)
@@ -85,7 +86,8 @@ def writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTabl
 
 
 
-    document.save('C:/Users/UzziMauzer/Desktop/AbitAccParser/tmp.docx')
+    # document.save('C:/Users/UzziMauzer/Desktop/AbitAccParser/tmp.docx')
+    return document
 
 
 if __name__ == "__main__":
@@ -96,6 +98,7 @@ if __name__ == "__main__":
                 '123456',
                 'ГУ МВД России по г.Балашиха',
                 'Правовое обеспечение национальной безопасности, специализация – уголовно-правовая, предварительное следствие в ОВД',
+                'ФПСОИБ',
                 '100',
                 '95',
                 '20',
