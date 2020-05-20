@@ -1,6 +1,7 @@
 from django import forms
 from home.models import Profile,OsobDocument,DostizhDocument
-from django.forms import TextInput,Textarea,Select,RadioSelect
+from django.forms import TextInput,Textarea,Select,RadioSelect,FileInput
+
 
 class ProfileForm(forms.ModelForm):
     DOST = (('a','a'),
@@ -48,10 +49,13 @@ class OsobDocumentForm(forms.ModelForm):
         }
 
 class DostizhDocumentForm(forms.ModelForm):
+    doc = forms.FileField(label=('Company Logo'),required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput)
     class Meta:
         model=DostizhDocument
         fields = ['name','type','doc']
-        widgets = {
+        widgets = {'name':TextInput(attrs={'class':'formaeb','placeholder':'название документа'}),
+                   'type':TextInput(attrs={'class':'formaeb','disabled':'disabled'}),
+                   'doc':FileInput(attrs={'class':'formaeb','disabled':'disabled'}),
         }
 class ZayavlForm(forms.ModelForm):
     class Meta:
