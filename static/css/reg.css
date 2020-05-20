@@ -43,3 +43,18 @@ content {
 .button-pravo {
     width: 350px;
 }
+
+.razdel {
+    background-color: rgb(53, 180, 230);
+    height: 2px;
+}
+
+.formaeb {
+    margin-right: 10px;
+    width: 300px;
+}
+
+.pechat  {
+    width: 462px;
+    height: 320px;
+}
