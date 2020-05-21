@@ -497,6 +497,7 @@
               <div class="col">
                 <div class="row">
                   <div class="col-md-6 mb-4 mt-4">
+                    {%if status >= 1%}
                     <a href="{%url 'getZayavl'  %}"role="button"><button class="btn btn-secondary btn-lg btn-block mb-4" type="submit">Сформировать заявление</button></a>
                     <p>Нажмите на кнопку выше, распечатайте сформированное заявление и поставьте свои подписи, после чего прикрепите скан документа</p>
                       <style type="text/css">
@@ -512,16 +513,20 @@
                         {% csrf_token %}
                         {{zayavlForm}}
                         <button class="btn btn-primary btn-lg btn-block mt-5" type="submit">Прикрепить</button>
+                        {%else %}
+                        <h4 class="mb-4">Заполните анкету прежде чем заполнить заявление</h4>
+                        {%endif%}
                     </div>
                 <style>
                   .knopk {
                     padding-left: 0 !important;
                   }
                 </style>
-
+                    {%if status >= 1%}
                 <div class="col-md-6  mb-3 mt-4">
                   <img class="pechat" src="{% static "admin1/images/pechat.png" %}">
                 </div>
+                  {%endif%}
                         </form>
               </div>
           </div>

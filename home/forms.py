@@ -72,3 +72,26 @@ class AdminForm(forms.ModelForm):
         fields = ['familiya','dopusk','balli']
         widgets = {
         }
+
+class AdminOsobDocumentForm(forms.ModelForm):
+    class Meta:
+        model=OsobDocument
+        fields = ['name','type','doc',]
+        widgets = {'name':TextInput(attrs={'class':'form-control formaeb','placeholder':'название документа'}),
+                   'type':TextInput(attrs={'class':'form-control formaeb','disabled':'disabled'}),
+        
+        }
+
+class AdminDostizhDocumentForm(forms.ModelForm):
+    class Meta:
+        model=DostizhDocument
+        fields = ['name','type','doc']
+        widgets = {'name':TextInput(attrs={'class':'form-control formaeb','placeholder':'название документа'}),
+                   'type':TextInput(attrs={'class':'form-control formaeb','disabled':'disabled'}),
+        }
+class AdminZayavlForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields = ['zayavl',]
+        widgets = {
+        }

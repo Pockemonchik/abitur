@@ -30,12 +30,12 @@ class Profile(models.Model):
     organ= models.CharField(max_length=20,choices=ORGAN,default='')
     #spec
     SPEC=(
-        ('БИТ10,1,1,', 'ПД'),
+        ('ПД', 'ПД'),
         ('фпсоиб', 'фпсоиб'),
         )
     FAC = (
         ('фпсоиб', 'фпсоиб'),
-        ('БИТ10,1,1,', 'ПД'),
+        ('ПД', 'ПД'),
     )
     special=models.CharField(max_length=50,choices=SPEC,default='')
     facult=models.CharField(max_length=50,choices=FAC,default='')

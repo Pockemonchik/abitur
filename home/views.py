@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm,ZayavlForm,AdminForm
+from home.forms import ProfileForm,OsobDocumentForm,DostizhDocumentForm,ZayavlForm,AdminForm,AdminZayavlForm,AdminOsobDocumentForm,AdminDostizhDocumentForm
 from home.models import Profile,OsobDocument,DostizhDocument
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
@@ -54,14 +54,65 @@ def index(request):
     else:
         return redirect('log')
 
+
+def detail_user(request,pk):
+    if request.user.is_authenticated:
+        profile=get_object_or_404(Profile,pk=pk)
+        status=0
+        if profile.checkAnket():
+            status=1
+        # if profile.dopinfo==True:
+        #     status=2
+        if profile.checkZayavl():
+            status=3
+        print(profile.checkAnket())
+        print(profile.dopinfo)
+        dopinfochek=True
+        if profile.dopinfo:
+            osob=OsobDocument.objects.filter(profile=profile)
+            for o in osob:
+                if not o.doc:
+                    dopinfochek=False
+                    break
+            dost=DostizhDocument.objects.filter(profile=profile)
+            for o in dost:
+                if not o.doc:
+                    dopinfochek=False
+                    break
+
+        print(profile.checkZayavl())
+        form = ProfileForm(instance=profile)
+        zayavlForm = AdminZayavlForm(instance=profile)
+        OsobFormSet = modelformset_factory(OsobDocument,form=AdminOsobDocumentForm,extra=0)
+        DostFormSet = modelformset_factory(DostizhDocument,form=AdminDostizhDocumentForm,extra=0)
+        formset1=OsobFormSet(queryset=OsobDocument.objects.filter(profile=profile))
+        formset0=DostFormSet(queryset=DostizhDocument.objects.filter(profile=profile))
+        return render(request, 'detail_user.html',{
+        'form':form,
+        'formset0': formset0,
+        'formset1': formset1,
+        'zayavlForm':zayavlForm,
+        'status':status,
+        'profile':profile,
+        'dopinfochek':dopinfochek
+        })
+    else:
+        return redirect('log')
+
+
 def adminpanel(request,slug):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
         AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
-        formset=AdminFormSet(queryset=Profile.objects.filter(special=slug))
+        allprofiles=Profile.objects.filter(special=slug)
+        formset=AdminFormSet(queryset=allprofiles)
+        form=formset
+        profile_formset=zip(allprofiles,formset)
+
         slug=slug
         return render(request, 'adminpanel.html',{
-            'formset': formset,
+            'form':form,
+            'profile_formset':profile_formset,
             'slug':slug,
         })
     else:

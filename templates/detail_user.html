@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{%load static%}
+{% block content %}
+
+
+
+
+
+
+
+
+  <div class="container">
+<div class="py-5 text-center">
+
+
+</div>
+
+<div class="row biggest">
+
+  <div class="col order-md-1">
+    {%if status >= 1%}
+    <div class="alert alert-success" role="alert">
+      Анкета заполнена
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+      Анкета заполнена
+    </div>
+    {%endif%}
+    {%if profile.dopinfo == True%}
+      {%if dopinfochek == True%}
+    <div class="alert alert-success" role="alert">
+      Документы подкреплены
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+        Документы подкреплены
+    </div>
+    {%endif%}
+
+
+    {%endif%}
+    {%if status >=  3%}
+    <div class="alert alert-success" role="alert">
+      Заявление заполнено и прикреплено
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+        Заявление заполнено и прикреплено
+    </div>
+    {%endif%}
+      {%if profile.dopusk%}
+    <div class="alert alert-success" role="alert">
+        Данные рассмотрены
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+          Данные рассмотрены
+    </div>
+    {%endif%}
+    <h3 class="mb-3">1. Заполните анкету</h3>
+    <hr class="mb-4 razdel">
+    <h4 class="mb-3">Информация</h4>
+    <form action="{%url 'saveInfo'%}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="lastName">Фамилия</label>
+            {{form.familiya}}
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="firstName">Имя</label>
+          {{form.imya}}
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="lastName">Отчество</label>
+            {{form.otchestvo}}
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Паспорт</h4>
+      <div class="row">
+          <div class="col-md-4 mb-3">
+
+            <label for="firstName">Серия</label>
+              {{form.seriya}}
+              <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Номер</label>
+              {{form.nomer}}
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+      <hr class="mb-4">
+      <h4>Пол</h4>
+      <div class="d-block my-3">
+      {{form.pol}}
+        </div>
+      <hr class="mb-4">
+      <h4>Контакты</h4>
+      <div class="row">
+          <div class="col-md-4 mb-3">
+
+            <label for="firstName">Эл Почта</label>
+              {{form.email}}
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Тел-Номер</label>
+              {{form.phone}}
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+      <hr class="mb-4">
+      <h4>Комплектующий орган</h4>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+        {{form.organ}}
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Специальность</h4>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="lastName">Специальность</label>
+          {{form.special}}
+        </div>
+        <div class="col-md-5 mb-3">
+          <label for="lastName">Факультет</label>
+            {{form.facult}}
+        </div>
+      </div>
+      <hr class="mb-4">
+      <h4>Результаты ЕГЭ</h4>
+      <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="firstName">Русский язык</label>
+              {{form.russ}}
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="lastName">Математика</label>
+            {{form.mat}}
+          </div>
+          <div class="col-md-3 mb-3">
+              <label for="firstName">Обществознание</label>
+                {{form.obsh}}
+            </div>
+          <div class="col-md-3 mb-3">
+              <label for="firstName">Биология</label>
+                {{form.biol}}
+            </div>
+        </div>
+        <hr class="mb-4">
+          </form>
+
+    <h3 class="mb-3 mt-5" >2. Прикрепленные документы</h3>
+    <hr class="mb-4 razdel">
+    <!-- <h4 class="mb-3">Подкрепить файл</h4> -->
+
+
+          <div class="col mb-3">
+            {%if profile.dopinfo == True%}
+            <h4 class="mb-4">Личные достижения</h4>
+            <form action="{%url 'saveDocDost'%}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            {{ formset0.management_form }}
+              {%for form in formset0%}
+              <div class="row ">
+                  <tr>
+                    {% for field in form %}
+                    <div class="col-sm ">
+                      <td>{{ field }}</td>
+                    </div>
+                    {% endfor %}
+                  </tr>
+                </div>
+                <hr class="mb-3 mt-3">
+              {%endfor%}
+          </div>
+              </form>
+
+          <div class="col mb-3">
+            <hr class="mb-3">
+            <h4 class="mb-4">Особое право на поступление</h4>
+            <form action="{%url 'saveDocOsob'%}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            {{ formset1.management_form }}
+            {%for form in formset1%}
+            <div class="row ">
+                <tr>
+                  {% for field in form %}
+                  <div class="col-sm ">
+                    <td>{{ field }}</td>
+                  </div>
+                  {% endfor %}
+                </tr>
+              </div>
+              <hr class="mb-3 mt-3">
+            {%endfor%}
+            </form>
+            {%else%}
+            <h4 class="mb-4">Нет прикрепленных документов</h4>
+            {%endif%}
+
+
+            <h3>3. Заявление</h4>
+              <hr class="mb-3 razdel">
+              <div class="col">
+                <div class="row">
+                  <div class="col-md-6 mb-4 mt-4">
+                          <form action="{%url 'saveZayavl'%}" method="post" enctype="multipart/form-data" class="oformit">
+                        {% csrf_token %}
+                        {{zayavlForm.as_p}}
+                    </div>
+                <style>
+                  .knopk {
+                    padding-left: 0 !important;
+                  }
+                </style>
+
+
+                        </form>
+              </div>
+          </div>
+          </div>
+        </div>
+
+
+
+      </div>
+            </div>
+
+
+
+
+
+
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+
+</footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+      <script src="form-validation.js"></script>
+
+      {% endblock %}

@@ -57,8 +57,8 @@
       </div>
       <div class="card-body">
           <ul class="list-unstyled mt-3 mb-4">
-            <li>Факультет</li>
-            <li>Факультет</li>
+            <li><a href="{%url 'adminpanel' slug='фпсоиб'%}">ФПСОИБ</a></li>
+            <li><a href="{%url 'adminpanel' slug='ПД'%}">ПД</a></li>
             <li>Факультет</li>
         </ul>
 
@@ -106,10 +106,10 @@
         </thead>
         <tbody>
 
-            {{ formset.management_form }}
-        {%for form in formset%}
+            {{ form.management_form }}
+        {%for profile,form in profile_formset%}
           <tr>
-              <td></td>
+              <td><a href="{%url 'detail_user' pk=profile.pk%}">подробнее</a></td>
             {% for field in form %}
             <td>{{ field }}</td>
             {% endfor %}
