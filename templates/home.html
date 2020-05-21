@@ -60,6 +60,7 @@
     {%endif%}
     <h3 class="mb-3">1. Заполните анкету</h3>
     <hr class="mb-4 razdel">
+    <div class="col">
     <h4 class="mb-3">Информация</h4>
     <form action="{%url 'saveInfo'%}" method="post" class="needs-validation" novalidate>
         {% csrf_token %}
@@ -86,8 +87,8 @@
             Valid last name is required.
           </div>
         </div>
-      </div>
       <hr class="mb-4">
+      </div>
       <h4>Паспорт</h4>
       <div class="row">
           <div class="col-md-4 mb-3">
@@ -131,23 +132,51 @@
           </div>
         </div>
       <hr class="mb-4">
-      <h4>Комплектующий орган</h4>
+      <h4 class="probel">Комплектующий орган</h4>
       <div class="row">
         <div class="col-md-5 mb-3">
         {{form.organ}}
         </div>
       </div>
       <hr class="mb-4">
-      <h4>Специальность</h4>
       <div class="row">
-        <div class="col-md-5 mb-3">
-          <label for="lastName">Специальность</label>
-          {{form.special}}
+        <div class="form-group col-md-4">
+          <h4 class="probel">Специальность</h4>
+          <select id="select1" class="form-control" size="4" name="fruct[]" multiple>
+            <option value="1" id="seler1">ПД</option>
+            <option value="2" id="seler2">ИБ</option>	
+            <option value="3">виноград</option>	
+            <option value="4">абрикос</option>	
+            <option value="5">ананас</option>	
+            <option value="6">арбуз</option>	
+          </select>
         </div>
-        <div class="col-md-5 mb-3">
-          <label for="lastName">Факультет</label>
-            {{form.facult}}
+        
+        <div class="form-group col-md-4">
+          <h4 class="probel">Факультет</h4>
+          <select id="select2" class="form-control" size="4" name="fruct[]" multiple>
+            
+          </select>
         </div>
+        <link rel="stylesheet" href="https://snipp.ru/cdn/bootstrap/4.3/bootstrap.min.css">
+        
+        <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+        // Очистить весь select
+        $('#seler1').click(function(){
+          $('#select2').empty();
+          $('#select2').prepend('<option value="">1</option>');
+          $('#select2').prepend('<option value="">2</option>');
+          return false
+        });
+
+        $('#seler2').click(function(){
+          $('#select2').empty();
+          $('#select2').prepend('<option value="">3</option>');
+          $('#select2').prepend('<option value="">4</option>');
+          return false
+        });
+        </script>
       </div>
       <hr class="mb-4">
       <h4>Результаты ЕГЭ</h4>
@@ -170,7 +199,7 @@
             </div>
         </div>
         <hr class="mb-4">
-        <h4>Дополнительно</h4>
+        <h4 class="probel">Дополнительно</h4>
         <div class="row">
           <!-- <div class="col-md-6 mb-3">
               <label for="lastName">Личные достижения</label>
@@ -180,7 +209,7 @@
               <label for="lastName">Особое право на поступление</label>
               {{form.osobpravo}}
             </div> -->
-            <div class="dropdown col-md-5 mb-3">
+            <div class="col-md-4 mb-3">
               <button class="btn btn-secondary  button-pravo" type="button"  data-toggle="modal" data-target="#exampleModal" >
                 Личные достижения
               </button>
@@ -190,7 +219,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Личные достижения</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -245,26 +274,22 @@
                     {{form.dost}}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Сохранить</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="dropdown col-md-5 mb-3">
+            <div class="dropdown col-md-4 mb-3">
               <button class="btn btn-secondary  button-pravo" type="button" id="dropdownMenu2" data-toggle="modal" data-target="#exampleModal2">
                 Особое право на поступление
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-
-              </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Особое право на поступление</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -422,8 +447,7 @@
                     {{form.osob}}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Сохранить</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
                   </div>
                 </div>
               </div>
@@ -431,9 +455,10 @@
         </div>
 
 
-      <hr class="mb-4">
+      <hr class="mb-4 mt-2">
       <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить информацию</button>
     </form>
+  </div>
 
     <h3 class="mb-3 mt-5" >2. Прикрепите документы</h3>
     <hr class="mb-4 razdel">
