@@ -58,15 +58,16 @@ def writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTabl
     for i in range(firstRow-1):
         table.add_row()
 
-    count = 0
-    for row in table.rows:
-        for cell in row.cells:
-            cell.text = str(listFirstTable[count])
-            count += 1
-            for run in cell.paragraphs[0].runs:
-                font = run.font
-                font.size = Pt(12)
-                font.name = 'Times New Roman'
+    if firstRow>0:
+        count = 0
+        for row in table.rows:
+            for cell in row.cells:
+                cell.text = str(listFirstTable[count])
+                count += 1
+                for run in cell.paragraphs[0].runs:
+                    font = run.font
+                    font.size = Pt(12)
+                    font.name = 'Times New Roman'
 
 
 
@@ -75,14 +76,15 @@ def writeTextToDoc(listText, firstRow, listFirstTable, secondRow, listSecondTabl
         table.add_row()
 
     count = 0
-    for row in table.rows:
-        for cell in row.cells:
-            cell.text = str(listSecondTable[count])
-            count += 1
-            for run in cell.paragraphs[0].runs:
-                font = run.font
-                font.size = Pt(12)
-                font.name = 'Times New Roman'
+    if secondRow>0:
+        for row in table.rows:
+            for cell in row.cells:
+                cell.text = str(listSecondTable[count])
+                count += 1
+                for run in cell.paragraphs[0].runs:
+                    font = run.font
+                    font.size = Pt(12)
+                    font.name = 'Times New Roman'
 
 
 

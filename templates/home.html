@@ -18,16 +18,46 @@
 <div class="row biggest">
 
   <div class="col order-md-1">
-    <h1>{{status}}</h1>
+    {%if status >= 1%}
     <div class="alert alert-success" role="alert">
-      Ваш документ загружен
+      Анкета заполнена
     </div>
-    <div class="alert alert-success" role="alert">
-      Ваш документ рассмотрен
-    </div>
+    {%else%}
     <div class="alert alert-danger" role="alert">
-      Ваш документ принят
+      Анкета заполнена
     </div>
+    {%endif%}
+    {%if profile.dopinfo == True%}
+      {%if dopinfochek == True%}
+    <div class="alert alert-success" role="alert">
+      Документы подкреплены
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+        Документы подкреплены
+    </div>
+    {%endif%}
+
+
+    {%endif%}
+    {%if status >=  3%}
+    <div class="alert alert-success" role="alert">
+      Заявление заполнено и прикреплено
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+        Заявление заполнено и прикреплено
+    </div>
+    {%endif%}
+      {%if profile.dopusk%}
+    <div class="alert alert-success" role="alert">
+        Ваша данные рассмотрены
+    </div>
+    {%else%}
+    <div class="alert alert-danger" role="alert">
+          Ваша данные рассмотрены
+    </div>
+    {%endif%}
     <h3 class="mb-3">1. Заполните анкету</h3>
     <hr class="mb-4 razdel">
     <h4 class="mb-3">Информация</h4>
@@ -190,9 +220,9 @@
                         Наличие аттестата о среднем общем образовании с итоговыми отметками только
                         «хорошо» и «отлично» по всем учебным предметам учебного плана, изучавшимся на
                         уровне среднего общего образования,выданного общеобразовательной организацией
-                        МВД России, осуществляющей образовательную деятельность пообразовательным 
-                        программам основного общего и среднего общего образования,интегрированным с 
-                        дополнительными общеразвивающими программами, имеющими целью подготовку 
+                        МВД России, осуществляющей образовательную деятельность пообразовательным
+                        программам основного общего и среднего общего образования,интегрированным с
+                        дополнительными общеразвивающими программами, имеющими целью подготовку
                         несовершеннолетних обучающихся к службе в органах внутренних дел.
                       </label>
                     </div>
@@ -226,7 +256,7 @@
                 Особое право на поступление
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                
+
               </div>
             </div>
             <!-- Modal -->
@@ -321,8 +351,8 @@
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
-                        Дети прокурорских работников, погибших (умерших) вследствие увечья или иного повреждения здоровья, 
-                        полученных ими в период прохождения службы в органах прокуратуры либо после увольнения вследствие 
+                        Дети прокурорских работников, погибших (умерших) вследствие увечья или иного повреждения здоровья,
+                        полученных ими в период прохождения службы в органах прокуратуры либо после увольнения вследствие
                         причинения вреда здоровью в связи с их служебной деятельностью.
                       </label>
                     </div>
@@ -404,20 +434,21 @@
       <hr class="mb-4">
       <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить информацию</button>
     </form>
-    
+
     <h3 class="mb-3 mt-5" >2. Прикрепите документы</h3>
     <hr class="mb-4 razdel">
     <!-- <h4 class="mb-3">Подкрепить файл</h4> -->
 
 
           <div class="col mb-3">
+            {%if profile.dopinfo == True%}
             <h4 class="mb-4">Личные достижения</h4>
             <form action="{%url 'saveDocDost'%}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
             {{ formset0.management_form }}
               {%for form in formset0%}
               <div class="row ">
-                  <tr>  
+                  <tr>
                     {% for field in form %}
                     <div class="col-sm ">
                       <td>{{ field }}</td>
@@ -456,8 +487,11 @@
               <button class="btn btn-primary btn-lg btn-block" type="submit">Прикрепить</button>
             </div>
             </form>
-            
-            
+            {%else%}
+            <h4 class="mb-4">Что бы прикрепить документы укажите их в анкете выше</h4>
+            {%endif%}
+
+
             <h3>3. Оформите заявление</h4>
               <hr class="mb-3 razdel">
               <div class="col">
@@ -484,7 +518,7 @@
                     padding-left: 0 !important;
                   }
                 </style>
-                
+
                 <div class="col-md-6  mb-3 mt-4">
                   <img class="pechat" src="{% static "admin1/images/pechat.png" %}">
                 </div>

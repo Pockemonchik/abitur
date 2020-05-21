@@ -16,11 +16,25 @@ def index(request):
         status=0
         if profile.checkAnket():
             status=1
-        if profile.dopinfo==True:
-            status=2
+        # if profile.dopinfo==True:
+        #     status=2
         if profile.checkZayavl():
             status=3
         print(profile.checkAnket())
+        print(profile.dopinfo)
+        dopinfochek=True
+        if profile.dopinfo:
+            osob=OsobDocument.objects.filter(profile=profile)
+            for o in osob:
+                if not o.doc:
+                    dopinfochek=False
+                    break
+            dost=DostizhDocument.objects.filter(profile=profile)
+            for o in dost:
+                if not o.doc:
+                    dopinfochek=False
+                    break
+
         print(profile.checkZayavl())
         form = ProfileForm(instance=profile)
         zayavlForm = ZayavlForm(instance=profile)
@@ -33,7 +47,9 @@ def index(request):
         'formset0': formset0,
         'formset1': formset1,
         'zayavlForm':zayavlForm,
-        'status':status
+        'status':status,
+        'profile':profile,
+        'dopinfochek':dopinfochek
         })
     else:
         return redirect('log')
@@ -163,6 +179,7 @@ def saveInfo(request):
                 form=ProfileForm(request.POST)
                 print(request.POST)
                 if form.is_valid():
+                    profile.delete()
                     newprofile=form.save(commit=False)
                     newprofile.user=request.user
                     if request.POST.getlist('dost') or request.POST.getlist('osob') != []:
@@ -172,13 +189,13 @@ def saveInfo(request):
                         for d in request.POST.getlist('dost'):
                             newdost=DostizhDocument()
                             newdost.type=d
-                            newdost.profile=profile
+                            newdost.profile=newprofile
                             newdost.save()
 
                         for d in request.POST.getlist('osob'):
                             newdost=OsobDocument()
                             newdost.type=d
-                            newdost.profile=profile
+                            newdost.profile=newprofile
                             newdost.save()
 
                 else:

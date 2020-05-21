@@ -51,7 +51,7 @@ class Profile(models.Model):
     #1-превая форма 2 доки 3 заявление
     dopinfo=models.BooleanField(default=False,blank=True)
     dopusk=models.BooleanField(default=False,blank=True)
-    balli = models.IntegerField(default=0)
+    balli = models.IntegerField(default=0,blank=True)
     def __str__(self):
         return self.user.username
     def getData(self):
