@@ -63,11 +63,16 @@
             <label for="InputUsername">Номер паспорта</label>
             {{regform.password}}
           </div>
-          <div class="form-check checker">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-             <a href="#">Принять пользовательсякое соглашение</a>
-            </label>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+              <label class="form-check-label" for="invalidCheck3">
+                Принять пользовательсякое соглашение
+              </label>
+              <div class="invalid-feedback">
+                Вы обязательно должны принять пользовательское соглашение
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
         </form>

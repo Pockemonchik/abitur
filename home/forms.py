@@ -45,7 +45,9 @@ class OsobDocumentForm(forms.ModelForm):
     class Meta:
         model=OsobDocument
         fields = ['name','type','doc',]
-        widgets = {
+        widgets = {'name':TextInput(attrs={'class':'form-control formaeb','placeholder':'название документа'}),
+                   'type':TextInput(attrs={'class':'form-control formaeb','disabled':'disabled'}),
+                   'doc':FileInput(attrs={'class':'formaeb'}),
         }
 
 class DostizhDocumentForm(forms.ModelForm):
@@ -53,15 +55,17 @@ class DostizhDocumentForm(forms.ModelForm):
     class Meta:
         model=DostizhDocument
         fields = ['name','type','doc']
-        widgets = {'name':TextInput(attrs={'class':'formaeb','placeholder':'название документа'}),
-                   'type':TextInput(attrs={'class':'formaeb','disabled':'disabled'}),
+        widgets = {'name':TextInput(attrs={'class':'form-control formaeb','placeholder':'название документа'}),
+                   'type':TextInput(attrs={'class':'form-control formaeb','disabled':'disabled'}),
                    'doc':FileInput(attrs={'class':'formaeb','disabled':'disabled'}),
         }
 class ZayavlForm(forms.ModelForm):
+    zayavl = forms.FileField(label=(''),required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput)
     class Meta:
         model=Profile
         fields = ['zayavl',]
         widgets = {
+                   'zayavl':FileInput(attrs={'class':'formaeb','disabled':'disabled'}),
         }
 class AdminForm(forms.ModelForm):
     class Meta:
