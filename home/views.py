@@ -13,6 +13,8 @@ from io import StringIO,BytesIO
 def index(request):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
+        if profile.role == 2:
+            return redirect('adminpanel',slug ='all')
         status=0
         if profile.checkAnket():
             status=1
@@ -103,18 +105,32 @@ def detail_user(request,pk):
 def adminpanel(request,slug):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
-        AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
-        allprofiles=Profile.objects.filter(facult=slug)
-        formset=AdminFormSet(queryset=allprofiles)
-        form=formset
-        profile_formset=zip(allprofiles,formset)
+        if slug == 'all':
+            AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
+            allprofiles=Profile.objects.all()
+            formset=AdminFormSet(queryset=allprofiles)
+            form=formset
+            profile_formset=zip(allprofiles,formset)
 
-        slug=slug
-        return render(request, 'adminpanel.html',{
-            'form':form,
-            'profile_formset':profile_formset,
-            'slug':slug,
-        })
+            slug=slug
+            return render(request, 'adminpanel.html',{
+                'form':form,
+                'profile_formset':profile_formset,
+                'slug':slug,
+            })
+        else:
+            AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
+            allprofiles=Profile.objects.filter(facult=slug)
+            formset=AdminFormSet(queryset=allprofiles)
+            form=formset
+            profile_formset=zip(allprofiles,formset)
+
+            slug=slug
+            return render(request, 'adminpanel.html',{
+                'form':form,
+                'profile_formset':profile_formset,
+                'slug':slug,
+            })
     else:
         return redirect('log')
 def saveAdminTable(request,slug):
@@ -122,7 +138,10 @@ def saveAdminTable(request,slug):
         if request.method=="POST":
             profile=get_object_or_404(Profile,user=request.user)
             AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
-            formset=AdminFormSet(request.POST,queryset=Profile.objects.filter(special=slug))
+            if slug=='all':
+                formset=AdminFormSet(request.POST,queryset=Profile.objects.all())
+            else:
+                formset=AdminFormSet(request.POST,queryset=Profile.objects.filter(special=slug))
             if formset.is_valid():
                 for form in formset:
                     print('save')
@@ -260,3 +279,5 @@ def saveInfo(request):
 
     else:
         return redirect('log')
+def sogl(request):
+        return render(request,'sogl.html')

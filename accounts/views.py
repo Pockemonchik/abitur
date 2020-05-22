@@ -38,7 +38,7 @@ def reg(request):
         password = request.POST.get('password')
 
         if regform.is_valid():
-            # try:
+            try:
                  newuser =User.objects.create_user(regform.cleaned_data.get('username'),None,regform.cleaned_data.get('password'))
 
                  newuser.save()
@@ -50,8 +50,8 @@ def reg(request):
                  profile.save()
                  login(request,newuser)
                  return HttpResponseRedirect(reverse('index'))
-            # except:
-                 # return render(request,'error.html',{'content':"Произошла ошибка при регистрации"})
+            except:
+                 return render(request,'error.html',{'content':"Произошла ошибка при регистрации"})
 
         else:
             print(regform.errors)
