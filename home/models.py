@@ -9,12 +9,12 @@ from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile',on_delete=models.CASCADE,primary_key=True)
-    familiya=models.CharField(max_length=50,blank=True,default='')
-    imya=models.CharField(max_length=50,blank=True,default='')
-    otchestvo=models.CharField(max_length=50,blank=True,default='')
+    familiya=models.CharField(max_length=100,blank=True,default='')
+    imya=models.CharField(max_length=100,blank=True,default='')
+    otchestvo=models.CharField(max_length=100,blank=True,default='')
     #svyaz
-    phone=models.CharField(max_length=50,blank=True,default='')
-    email=models.EmailField(max_length=50,blank=True,default='')
+    phone=models.CharField(max_length=100,blank=True,default='')
+    email=models.EmailField(max_length=100,blank=True,default='')
     #passport
     seriya = models.IntegerField(default=0)
     nomer = models.IntegerField(default=0)
@@ -22,12 +22,101 @@ class Profile(models.Model):
         ('1', 'Мужской'),
         ('2', 'Женский'),
         )
-    pol= models.CharField(max_length=20,choices=POL,default='')
+    pol= models.CharField(max_length=100,choices=POL,default='')
     ORGAN=(
-        ('1', 'organ1'),
-        ('2', 'organ2'),
+        ('БСТМ МВД России', 'БСТМ МВД России'),
+
+        ('ДГСК МВД России', 'ДГСК МВД России'),
+
+        ('ГУВМ МВД России', 'ГУВМ МВД России'),
+
+        ('ОПБ МВД России', 'ОПБ МВД России'),
+
+        ('ФЭД МВД России','ФЭД МВД России'),
+
+        ('ЦСН БДД МВД России','ЦСН БДД МВД России'),
+
+        ('МВД по Республике Бурятия', 'МВД по Республике Бурятия'),
+
+        ('МВД по Республике Дагестан', 'МВД по Республике Дагестан'),
+
+        ('МВД по Республике Ингушетия', 'МВД по Республике Ингушетия'),
+
+        ('МВД по Республике Калмыкия', 'МВД по Республике Калмыкия'),
+
+        ('МВД по Республике Коми', 'МВД по Республике Коми'),
+
+        ('МВД по Республике Марий Эл', 'МВД по Республике Марий Эл'),
+
+        ('МВД по Республике Мордовия', 'МВД по Республике Мордовия'),
+
+        ('МВД по Республике Саха (Якутия)', 'МВД по Республике Саха (Якутия)'),
+
+        ('МВД по Удмуртской Республике', 'МВД по Удмуртской Республике'),
+
+        ('ГУ МВД России по г. Москве', 'ГУ МВД России по г. Москве'),
+
+        ('ГУ МВД России по Московской области', 'ГУ МВД России по Московской области'),
+
+        ('ГУ МВД России по Ставропольскому краю', 'ГУ МВД России по Ставропольскому краю'),
+
+        ('ГУ МВД России по Воронежской области', 'ГУ МВД России по Воронежской области'),
+
+        ('ГУ МВД России по Иркутской области', 'ГУ МВД России по Иркутской области'),
+
+        ('ГУ МВД России по Ростовской области', 'ГУ МВД России по Ростовской области'),
+
+        ('УМВД России по г. Севастополю', 'УМВД России по г. Севастополю'),
+
+        ('УМВД России по Забайкальскому краю', 'УМВД России по Забайкальскому краю'),
+
+        ('УМВД России по Астраханской области', 'УМВД России по Астраханской области'),
+
+        ('УМВД России по Белгородской области', 'УМВД России по Белгородской области'),
+
+        ('УМВД России по Брянской области', 'УМВД России по Брянской области'),
+
+        ('УМВД России по Владимирской области', 'УМВД России по Владимирской области'),
+
+        ('УМВД России по Ивановской области', 'УМВД России по Ивановской области'),
+
+        ('УМВД России по Калужской области', 'УМВД России по Калужской области'),
+
+        ('УМВД России по Кировской области', 'УМВД России по Кировской области'),
+
+        ('УМВД России по Костромской области', 'УМВД России по Костромской области'),
+
+        ('УМВД России по Курской области', 'УМВД России по Курской области'),
+
+        ('УМВД России по Липецкой области', 'УМВД России по Липецкой области'),
+
+        ('УМВД России по Орловской области', 'УМВД России по Орловской области'),
+
+        ('УМВД России по Пензенской области', 'УМВД России по Пензенской области'),
+
+        ('УМВД России по Рязанской области', 'УМВД России по Рязанской области'),
+
+        ('УМВД России по Смоленской области', 'УМВД России по Смоленской области'),
+
+        ('УМВД России по Тамбовской области', 'УМВД России по Тамбовской области'),
+
+        ('УМВД России по Тверской области', 'УМВД России по Тверской области'),
+
+        ('УМВД России по Тульской области', 'УМВД России по Тульской области'),
+
+        ('УМВД России по Ярославской области', 'УМВД России по Ярославской области'),
+
+        ('УМВД России по Еврейской автономной области', 'УМВД России по Еврейской автономной области'),
+
+        ('УТ МВД России по ЦФО', 'УТ МВД России по ЦФО'),
+
+        ('Московский университет МВД России имени В.Я. Кикотя', 'Московский университет МВД России имени В.Я. Кикотя'),
+
+        ('Всероссийский институт повышения квалификации сотрудников МВД России', 'Всероссийский институт повышения квалификации сотрудников МВД России'),
+
+        ('Читинское суворовское военное училище МВД России', 'Читинское суворовское военное училище МВД России'),
         )
-    organ= models.CharField(max_length=20,choices=ORGAN,default='')
+    organ= models.CharField(max_length=100,choices=ORGAN,default='',blank=True)
     #spec
     SPEC=(
         ('ПД', 'ПД'),
@@ -37,8 +126,10 @@ class Profile(models.Model):
         ('фпсоиб', 'фпсоиб'),
         ('ПД', 'ПД'),
     )
-    special=models.CharField(max_length=50,choices=SPEC,default='')
-    facult=models.CharField(max_length=50,choices=FAC,default='')
+    # special=models.CharField(max_length=100,choices=SPEC,default='',blank=True)
+    # facult=models.CharField(max_length=100,choices=FAC,default='',blank=True)
+    special=models.CharField(max_length=100,choices=FAC,default='',blank=True)
+    facult=models.CharField(max_length=100,default='',blank=True)
 
     #EGE
     russ = models.IntegerField(default=0)
@@ -103,16 +194,16 @@ class Profile(models.Model):
 
 class OsobDocument(models.Model):
     profile=models.ForeignKey(Profile, on_delete=models.CASCADE)
-    type=models.CharField(max_length=500,blank=True)
-    name=models.CharField(max_length=500,blank=True)
+    type=models.CharField(max_length=1000,blank=True)
+    name=models.CharField(max_length=1000,blank=True)
     doc = models.FileField(upload_to='files',default='',blank=True)
     def __str__(self):
             return self.profile.familiya+"особ право"
 
 class DostizhDocument(models.Model):
     profile=models.ForeignKey(Profile, on_delete=models.CASCADE)
-    type=models.CharField(max_length=500,blank=True)
-    name=models.CharField(max_length=500,blank=True)
+    type=models.CharField(max_length=1000,blank=True)
+    name=models.CharField(max_length=1000,blank=True)
     doc = models.FileField(upload_to='files',default='',blank=True)
     def __str__(self):
             return self.profile.familiya+"достижения"

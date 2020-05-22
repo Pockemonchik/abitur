@@ -104,7 +104,7 @@ def adminpanel(request,slug):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
         AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
-        allprofiles=Profile.objects.filter(special=slug)
+        allprofiles=Profile.objects.filter(facult=slug)
         formset=AdminFormSet(queryset=allprofiles)
         form=formset
         profile_formset=zip(allprofiles,formset)
@@ -226,7 +226,7 @@ def saveInfo(request):
     if request.user.is_authenticated:
         profile=get_object_or_404(Profile,user=request.user)
         if request.method=="POST":
-            # try:
+            try:
                 form=ProfileForm(request.POST)
                 print(request.POST)
                 if form.is_valid():
@@ -251,8 +251,8 @@ def saveInfo(request):
 
                 else:
                     print(form.errors)
-            # except:
-            #     return render(request,'error.html',{'content':"Произошла ошибка при сохранении данных"})
+            except:
+                return render(request,'error.html',{'content':"Произошла ошибка при сохранении данных"})
 
 
         return redirect('index')
