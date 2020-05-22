@@ -10,45 +10,36 @@
     <meta name="apple-mobile-web-app-title" content="CodePen">
     <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
     <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-    
-    
+
+
  </head>
- 
+
  <body>
-    
+
     <div id="wrapper">
        <!-- Sidebar -->
        <div id="sidebar-wrapper">
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <li>
+               <a href="{%url 'adminpanel' slug='all'%}">Все кандидаты</a>
+
+            </li>
              <li class="active">
-                <a href="#"><span class="fa-stack  "></span>Dashboard</a>
+                <a href="#"><span class="fa-stack  "></span>ФПСОИБ</a>
                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                   <li><a href="#">link1</a></li>
-                   <li><a href="#">link2</a></li>
+                   <li><a href="{%url 'adminpanel' slug='1факультет'%}">1факультет</a></li>
+                   <li><a href="{%url 'adminpanel' slug='2факультет'%}">2факультет</a></li>
                 </ul>
              </li>
              <li>
-                <a href="#"><span class="fa-stack"></span>Shortcut</a>
+                <a href="#"><span class="fa-stack"></span>ПД</a>
                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                   <li><a href="#"><span class=""></span>link1</a></li>
-                   <li><a href="#"><span class=""></span>link2</a></li>
+                  <li><a href="{%url 'adminpanel' slug='3факультет'%}">3факультет</a></li>
+                  <li><a href="{%url 'adminpanel' slug='4факультет'%}">4факультет</a></li>
                 </ul>
              </li>
-             <li>
-                <a href="#"><span class="fa-stack "></span>Overview</a>
-             </li>
-             <li>
-                <a href="#"> <span class="fa-stack "></span>Events</a>
-             </li>
-             <li>
-                <a href="#"><span class="fa-stack "></span>About</a>
-             </li>
-             <li>
-                <a href="#"><span class="fa-stack "></span>Services</a>
-             </li>
-             <li>
-                <a href="#"><span class="fa-stack "></span>Contact</a>
-             </li>
+
+
           </ul>
        </div>
        <!-- /#sidebar-wrapper -->
@@ -64,17 +55,12 @@
                         <i class="fa fa-arrow-down fa-5x"></i>
                       </div>
                       <div class="col text-center">
-                        <div class="huge">26</div>
-                        <div>Всего пользователей</div>
+                        <div class="huge">{{vsego}}</div>
+                        <div>Всего кадидатов</div>
                       </div>
                     </div>
                   </div>
-                  <a href="#">
-                    <div class="panel-footer">
-                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                      <div class="clearfix"></div>
-                    </div>
-                  </a>
+
                 </div>
               </div>
               <div class="col-lg-4 col-md-6">
@@ -85,17 +71,12 @@
                         <i class="fa fa-arrow-right fa-5x"></i>
                       </div>
                       <div class="col text-center">
-                        <div class="huge">26</div>
-                        <div>Всего пользователей</div>
+                        <div class="huge">{{zapoln}}</div>
+                        <div>Полностью заполнены данные</div>
                       </div>
                     </div>
                   </div>
-                  <a href="#">
-                    <div class="panel-footer">
-                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                      <div class="clearfix"></div>
-                    </div>
-                  </a>
+
                 </div>
               </div>
               <div class="col-lg-4 col-md-6">
@@ -106,23 +87,21 @@
                         <i class="fa fa-check fa-5x"></i>
                       </div>
                       <div class="col text-center">
-                        <div class="huge">26</div>
-                        <div>Всего пользователей</div>
+                        <div class="huge">{{dopusheno}}</div>
+                        <div>Допущено </div>
                       </div>
                     </div>
                   </div>
-                  <a href="#">
-                    <div class="panel-footer">
-                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                      <div class="clearfix"></div>
-                    </div>
-                  </a>
+
                 </div>
               </div>
             </div>
              <div class="row">
                 <div class="col-lg-12">
-                  <h1 class="page-header">Dashboard</h1>
+                  <h1 class="page-header">Список абитуриентов</h1>
+                  <form action="{%url 'saveAdminTable' slug%}" method="post">
+                      {% csrf_token %}
+
                   <table class="table table-hover">
                     <thead>
                       <th class="text-center">#</th>
@@ -132,42 +111,22 @@
                       <th>Пометка</th>
                     </thead>
                     <tbody>
-                      <!--
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td class="text-center">1</td>
-                          <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                          <td class="text-center" width="10%">Admin</td>
-                          <td><span class="label label-info">Pending</span></td>
-                        </tr>
-              -->
-                      <!-- START CONTENT END -->
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-                      <tr>
-                      </tr>
-              
-                      <!-- DUMP CONTENT END -->
-              
+
+                                  {{ form.management_form }}
+                              {%for profile,form in profile_formset%}
+                                <tr>
+                                    <td><a href="{%url 'detail_user' pk=profile.pk%}">подробнее</a></td>
+                                  {% for field in form %}
+                                  <td>{{ field }}</td>
+                                  {% endfor %}
+                                </tr>
+                            {%endfor%}
+
                     </tbody>
-              
+
                   </table>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить изменения</button>
+                    </form>
                 </div>
              </div>
           </div>
@@ -210,6 +169,6 @@ $(document).ready(function() {
 });
  </script>
  </body>
- 
+
  </html>
   {%endblock%}

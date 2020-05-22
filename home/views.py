@@ -111,12 +111,22 @@ def adminpanel(request,slug):
             formset=AdminFormSet(queryset=allprofiles)
             form=formset
             profile_formset=zip(allprofiles,formset)
-
+            vsego=allprofiles.count()
+            zapoln=0
+            dopusheno=0
+            for q in allprofiles:
+                if q.dopusk == True:
+                    dopusheno+=1
+                if q.checkZayavl() == True and q.checkAnket() == True:
+                    zapoln+=1
             slug=slug
             return render(request, 'adminpanel.html',{
                 'form':form,
                 'profile_formset':profile_formset,
                 'slug':slug,
+                'vsego':vsego,
+                'zapoln':zapoln,
+                'dopusheno':dopusheno
             })
         else:
             AdminFormSet = modelformset_factory(Profile,form=AdminForm,extra=0)
@@ -124,12 +134,22 @@ def adminpanel(request,slug):
             formset=AdminFormSet(queryset=allprofiles)
             form=formset
             profile_formset=zip(allprofiles,formset)
-
+            vsego=allprofiles.count()
+            zapoln=0
+            dopusheno=0
+            for q in allprofiles:
+                if q.dopusk == True:
+                    dopusheno+=1
+                if q.checkZayavl() == True and q.checkAnket() == True:
+                    zapoln+=1
             slug=slug
             return render(request, 'adminpanel.html',{
                 'form':form,
                 'profile_formset':profile_formset,
                 'slug':slug,
+                'vsego':vsego,
+                'zapoln':zapoln,
+                'dopusheno':dopusheno
             })
     else:
         return redirect('log')
