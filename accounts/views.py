@@ -51,7 +51,7 @@ def reg(request):
                  login(request,newuser)
                  return HttpResponseRedirect(reverse('index'))
             except:
-                 return render(request,'error.html',{'content':"Произошла ошибка при регистрации"})
+                return render(request,'error.html',{'content':"Произошла ошибка при регистрации"})
 
         else:
             print(regform.errors)

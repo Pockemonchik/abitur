@@ -161,11 +161,12 @@ def saveAdminTable(request,slug):
             if slug=='all':
                 formset=AdminFormSet(request.POST,queryset=Profile.objects.all())
             else:
-                formset=AdminFormSet(request.POST,queryset=Profile.objects.filter(special=slug))
+                formset=AdminFormSet(request.POST,queryset=Profile.objects.filter(facult=slug))
             if formset.is_valid():
                 for form in formset:
                     print('save')
-                    form.save()
+                    update=form.save(commit=False)
+                    update.save()
             else:
                 print(formset.errors)
             return redirect('adminpanel',slug=slug)

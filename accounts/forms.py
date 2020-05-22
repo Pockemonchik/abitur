@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import TextInput
+from django.forms import TextInput,NumberInput
 from django import forms
 
 
@@ -22,5 +22,5 @@ class UserRegisterForm(forms.ModelForm):
         fields = ('username', 'password', )
         widgets = {
             'username':TextInput(attrs={'class':'form-control'}),
-            'password':TextInput(attrs={'class':'form-control'}),
+            'password':NumberInput(attrs={'class':'form-control'}),
             }
